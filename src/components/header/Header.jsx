@@ -6,7 +6,7 @@ import SwitchSelector from "react-native-switch-selector";
 
 export const Header = () => {
   const navigation = useNavigation()
-  const onLogout = () => navigation.navigate("UserProfile")
+  const onLogout = () => navigation.navigate("Login")
 
   const options = [
     { label: "EN", value: "en" },
