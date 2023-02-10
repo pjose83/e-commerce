@@ -18,10 +18,17 @@ export const Products = () => {
   useEffect(() => { getProducts() }, [filterBtn])
 
   const renderProducts = ({ item }) => {
-    const { price, title, image } = item
+    const { price, title, image, description } = item
     const intPrice = parseInt(price)
 
-    return <ProductItem image={image} title={title} price={intPrice} />
+    return (
+      <ProductItem
+        image={image}
+        title={title}
+        price={intPrice}
+        description={description}
+      />
+    )
   }
 
   return (
@@ -38,22 +45,12 @@ export const Products = () => {
             ItemSeparatorComponent={() => <View style={{ margin: 10 }} />}
           />
       }
-      {/* <FlatList
-        horizontal
-        refreshing
-        data={products}
-        renderItem={renderProducts}
-        keyExtractor={({ id }) => id}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ margin: 10 }} />}
-      /> */}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   list: {
-    width: "100%",
-    // height: height - 500,
+    width: "100%"
   },
 })

@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dimensions, StyleSheet } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
-import { Cart, Favorites, Store, UserProfile } from "../views";
+import { Details, Favorites, Store, UserProfile } from "../views";
 import { colors } from "../theme";
 
 const { height } = Dimensions.get("window")
@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const routes = [
   { name: "Store", component: Store, icon: "store" },
   { name: "Favorites", component: Favorites, icon: "heart" },
-  { name: "Cart", component: Cart, icon: "shopping-cart" },
+  { name: "Details", component: Details, icon: "shopping-cart" },
   { name: "UserProfile", component: UserProfile, icon: "user" }
 ]
 
@@ -37,9 +37,6 @@ export const TabNavigator = () => {
             tabBarShowLabel: false,
             tabBarIcon: ({ color }) => <FontAwesome5 name={icon} size={30} color={color} />,
           }}
-          // listeners={{
-          //   tabPress: name === "Posts" ? goTop : null
-          // }}
         />
       ))}
     </Navigator>

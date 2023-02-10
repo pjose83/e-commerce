@@ -1,25 +1,24 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
-import { TabNavigator } from './src';
-import { AppContext } from './src/context/store';
+import { NativeBaseProvider } from 'native-base'
+import { SafeAreaView, StyleSheet, StatusBar } from 'react-native'
+import { AppContext } from './src/context/store'
+import { ApolloProvider } from '@apollo/client'
+import client from './config/apollo'
+import { StackNavigator } from './src/routes'
 
-const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const { Navigator, Screen } = Stack
   return (
-    <AppContext>
-      <SafeAreaView style={styles.safeAreaView}>
-        <StatusBar hidden={false} backgroundColor="#000" translucent={true} />
-        <NavigationContainer>
-          <Navigator>
-            <Screen name="TabNavigator" component={TabNavigator} />
-          </Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
-    </AppContext>
-  );
+    <ApolloProvider client={client}>
+      <AppContext>
+        <NativeBaseProvider>
+          <SafeAreaView style={styles.safeAreaView}>
+            <StatusBar hidden={false} translucent={true} />
+            <StackNavigator />
+          </SafeAreaView>
+        </NativeBaseProvider>
+      </AppContext>
+    </ApolloProvider>
+  )
 }
 
 const styles = StyleSheet.create({

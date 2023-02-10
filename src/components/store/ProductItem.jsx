@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import {
   Dimensions,
   Image,
@@ -8,9 +9,12 @@ import { boxRadius, colors, StyledText } from '../../theme'
 
 const { width, height } = Dimensions.get("window")
 
-export const ProductItem = ({ image, title, price }) => {
+export const ProductItem = ({ image, title, price, description }) => {
+  const navigation = useNavigation()
+  const goToDetails = () => navigation.navigate("Details", { image, title, price, description })
+
   return (
-    <TouchableOpacity activeOpacity={.4} style={styles.productCard}>
+    <TouchableOpacity activeOpacity={.4} style={styles.productCard} onPress={goToDetails}>
       <Image
         style={styles.productImg}
         source={{ uri: image }}
